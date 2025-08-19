@@ -1,4 +1,5 @@
 import React from 'react';
+import { Motion, spring } from 'react-motion';
 
 import ContactCard from './components/ContactCard';
 import Button from './components/Button';
@@ -20,18 +21,13 @@ const data = [
 function App() {
 
   return (
-    <>
-      <Button />
-      <ul>
-        {data.slice(1).map((contact) =>
-          React.createElement(ContactCard, {
-            name: contact.name,
-            job: contact.job,
-            email: contact.email,
-          })
-        )}
-      </ul>
-    </>
+    <Motion defaultStyle={{opacity: 0}} style={{opacity: spring(1)}}>
+      {({opacity}) => (
+        <div style={{opacity}}>
+          This div fades in!
+        </div>
+      )}
+    </Motion>
   )
 }
 
