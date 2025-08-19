@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ContactCard from './components/ContactCard';
+import Button from './components/Button';
 
 
 const data = [
@@ -19,15 +20,18 @@ const data = [
 function App() {
 
   return (
-    <ul>
-      {data.slice(1).map((contact) =>
-        React.createElement(ContactCard, {
-          name: contact.name,
-          job: contact.job,
-          email: contact.email,
-        })
-      )}
-    </ul>
+    <>
+      <Button />
+      <ul>
+        {data.slice(1).map((contact) =>
+          React.createElement(ContactCard, {
+            name: contact.name,
+            job: contact.job,
+            email: contact.email,
+          })
+        )}
+      </ul>
+    </>
   )
 }
 
