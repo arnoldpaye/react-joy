@@ -21,13 +21,7 @@ const data = [
 function App() {
 
   return (
-    <Motion defaultStyle={{opacity: 0}} style={{opacity: spring(1)}}>
-      {({opacity}) => (
-        <div style={{opacity}}>
-          This div fades in!
-        </div>
-      )}
-    </Motion>
+    <Button />
   )
 }
 
