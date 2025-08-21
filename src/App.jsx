@@ -1,49 +1,25 @@
 import React from 'react';
-import VisuallyHidden from './components/VisuallyHidden';
-
+import LoginForm from './components/LoginForm';
 
 function App() {
-  const [showSearchField, setShowSearchField] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
-  /* let searchId;
-  if (showSearchField) {
-    searchId = React.useId();
-  } */
-
-  function handleToggleSearch(event) {
-    event.preventDefault();
-    setShowSearchField(!showSearchField);
+  function handleLogin(event) {
+    event.prevetDefault();
+    setIsLoggedIn(true);
   }
-
+  
   return (
     <>
-      <form>
-        {showSearchField && <SearchInput />}
-        <button
-          className="search-toggle-button"
-          onClick={handleToggleSearch}
-        >
-          <VisuallyHidden>
-            Toggle search
-          </VisuallyHidden>
-        </button>
-      </form>
+      {isLoggedIn ? (
+        <>
+          <p>You're already logged in!</p>
+          <button onClick={(event) => { setIsLoggedIn(false) }}>Log Out</button>
+        </>
+      ) : (
+        <LoginForm isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
+      )}
     </>
-  )
-}
-
-function SearchInput() {
-  const searchId = React.useId();
-
-  return (
-    <div className="search-field-wrapper">
-      <label htmlFor={searchId}>
-        <VisuallyHidden>
-          Search
-        </VisuallyHidden>
-      </label>
-      <input id={searchId} className="search-field" />
-    </div>
   );
 }
 

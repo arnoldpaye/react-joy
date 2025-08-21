@@ -1,45 +1,23 @@
 import React from 'react';
 
-function LoginForm() {
-  const [username, setUsername] = React.useState('');
+function LoginForm({ handleLogin }) {
+  const id = React.useId();
+  const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const id = React.useId();
-
-  const usernameId = `${id}-username`;
-  const passwordId = `${id}-password`;
-  
   return (
-    <form className="login-form">
-      <div>
-        <label htmlFor={usernameId}>
-          Username
-        </label>
+    <form onSubmit={handleLogin}>
+      <div className="row">
+        <label htmlFor={`${id}-email`}>Email</label>
         <input
-          type="text"
-          id={usernameId}
-          value={username}
-          onChange={event => {
-            setUsername(event.target.value);
+          type="email"
+          id={`${id}-email`}
+          value={email}
+          onChange={(event) => {
+            setEmail(event.target.value);
           }}
         />
       </div>
-      <div>
-        <label htmlFor={passwordId}>
-          Password:
-        </label>
-        <input
-          type="password"
-          id={passwordId}
-          value={password}
-          onChange={event => {
-            setPassword(event.target.value);
-          }}
-        />
-      </div>
-      <button>
-        Submit
-      </button>
     </form>
   )
 }
