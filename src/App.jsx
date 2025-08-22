@@ -1,30 +1,50 @@
 import React from "react";
 import LoginForm from "./components/LoginForm";
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+const INITIAL_STATE = { name: "Ivy" };
+window.stateValues = [INITIAL_STATE];
 
-  function handleLogin(event) {
-    event.prevetDefault();
-    setIsLoggedIn(true);
-  }
+function generateName() {
+  const names = [
+    "Ivy",
+    "Liam",
+    "Noah",
+    "Emma",
+    "Olivia",
+    "Ava",
+    "Mason",
+    "Ethan",
+    "Sophia",
+    "Mia",
+    "Lucas",
+    "Amelia",
+    "Harper",
+    "Evelyn",
+    "Logan",
+    "Minh",
+    "An",
+    "Linh",
+    "Hoa",
+    "Quynh",
+  ];
+  return names[Math.floor(Math.random() * names.length)];
+}
+
+function App() {
+  const [user, setUser] = React.useState(INITIAL_STATE);
 
   return (
     <>
-      {isLoggedIn ? (
-        <>
-          <p>You're already logged in!</p>
-          <button
-            onClick={(event) => {
-              setIsLoggedIn(false);
-            }}
-          >
-            Log Out
-          </button>
-        </>
-      ) : (
-        <LoginForm isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
-      )}
+      <button
+        onClick={() => {
+          const nextUser = { name: generateName() };
+          setUser(nextUser);
+          window.stateValues.push(nextUser);
+        }}
+      >
+        Edit name
+      </button>
+      <div>{JSON.stringify(user, null, 2)}</div>
     </>
   );
 }
