@@ -1,18 +1,14 @@
-import React from 'react';
+import React from "react";
 
-function Button ({children}) {
+function Button({ children }) {
   const [hi, setHi] = React.useState(5);
 
   function handleClick(event) {
-    console.log('Clicked');
+    console.log("Clicked");
     setHi(hi + 1);
   }
 
-  return (
-    <button onClick={handleClick}>
-      {children}
-    </button>
-  )
+  return <button onClick={handleClick}>{children}</button>;
 }
 
 export default Button;

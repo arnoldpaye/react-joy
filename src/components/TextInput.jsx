@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function TextInput({ id, label, type }) {
   const generatedId = React.useId();
@@ -13,7 +13,7 @@ function TextInput({ id, label, type }) {
       <label htmlFor={appliedId}>{label}</label>
       <input id={appliedId} type={type} />
     </div>
-  )
+  );
 }
 
 export default TextInput;

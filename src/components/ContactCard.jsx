@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-function ContactCard({id, name, job, email}) {
+function ContactCard({ id, name, job, email }) {
   return (
     <div>
       <h1>{name}</h1>
@@ -9,7 +9,7 @@ function ContactCard({id, name, job, email}) {
       <h3>Email</h3>
       <h2>{email}</h2>
     </div>
-  )
+  );
 }
 
 export default ContactCard;

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 function LoginForm({ handleLogin }) {
   const id = React.useId();
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   return (
     <form onSubmit={handleLogin}>
@@ -19,7 +19,7 @@ function LoginForm({ handleLogin }) {
         />
       </div>
     </form>
-  )
+  );
 }
 
 export default LoginForm;
