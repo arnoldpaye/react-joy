@@ -1,12 +1,8 @@
 import React from "react";
-import Counter from "./components/Counter";
-import "./styles.css";
-
-const INITIAL_STATE = { name: "Ivy" };
-window.stateValues = [INITIAL_STATE];
+import SignupForm from "./components/SignupForm";
 
 function App() {
-  return <Counter name={"Yuu"} />;
+  return <SignupForm />;
 }
 
 export default App;
