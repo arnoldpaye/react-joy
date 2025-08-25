@@ -1,16 +1,31 @@
 import React from "react";
 
 function App() {
-  const [count, setCount] = React.useState(0);
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const inputRef = React.useRef();
 
   React.useEffect(() => {
-    console.log(count);
-  }, [count]);
+    inputRef.current.focus();
+  }, []);
 
   return (
     <>
-      <p>the count is: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <header>
+        <img />
+      </header>
+      <main>
+        <form>
+          <input
+            ref={inputRef}
+            value={searchTerm}
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          />
+          <button>Search</button>
+        </form>
+      </main>
     </>
   );
 }
