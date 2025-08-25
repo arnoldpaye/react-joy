@@ -1,8 +1,8 @@
 import React from "react";
-import MouseCoords from "./components/MouseCoords";
+import WindowSize from "./components/WindowSize";
 
 function App() {
-  return <MouseCoords />;
+  return <WindowSize />;
 }
 
 export default App;
