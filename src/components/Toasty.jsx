@@ -34,10 +34,21 @@ function Toasty() {
   const translateX = isShown ? "0%" : "100%";
 
   return (
-    <div ref={wrapperRef} className="wrapper">
+    <div
+      ref={wrapperRef}
+      style={{
+        position: "relative",
+        pointerEvents: "none",
+      }}
+    >
       <div
-        className="character"
-        style={{ transform: `translateX(${translateX})` }}
+        style={{
+          position: "absolute",
+          right: 0,
+          bottom: 0,
+          fontSize: "200px",
+          transform: `translateX(${translateX})`,
+        }}
       >
         👻
       </div>
