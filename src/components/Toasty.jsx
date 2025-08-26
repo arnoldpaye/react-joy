@@ -14,6 +14,10 @@ function pureJsVersion() {
   });
 
   observer.observe(wrapperElement);
+
+  return () => {
+    observer.disconnect();
+  };
 }
 
 function Toasty() {
