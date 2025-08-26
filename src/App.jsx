@@ -1,10 +1,8 @@
 import React from "react";
-import MouseTracker from "./components/MouseTracker";
+import WindowSize from "./components/WindowSize";
 
 function App() {
-  const [isTrackingMouse, setIsTrackingMouse] = React.useState(true);
-
-  return <MouseTracker />;
+  return <WindowSize />;
 }
 
 export default App;
