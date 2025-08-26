@@ -1,8 +1,17 @@
 import React from "react";
-import WindowSize from "./components/WindowSize";
+import Clock from "./components/Clock";
 
 function App() {
-  return <WindowSize />;
+  const [isClockVisible, setIsClockVisible] = React.useState(true);
+
+  return (
+    <>
+      <button onClick={() => setIsClockVisible(!isClockVisible)}>
+        Clock {isClockVisible ? "ON" : "OFF"}
+      </button>
+      {isClockVisible && <Clock />}
+    </>
+  );
 }
 
 export default App;
