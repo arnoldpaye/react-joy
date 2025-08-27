@@ -1,8 +1,8 @@
 import React from "react";
-import UselessMachine from "./components/UselessMachine";
+import MediaPlayer from "./components/MediaPlayer";
 
 function App() {
-  return <UselessMachine />;
+  return <MediaPlayer />;
 }
 
 export default App;
