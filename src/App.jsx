@@ -1,17 +1,8 @@
 import React from "react";
-import Clock from "./components/Clock";
+import UselessMachine from "./components/UselessMachine";
 
 function App() {
-  const [isClockVisible, setIsClockVisible] = React.useState(true);
-
-  return (
-    <>
-      <button onClick={() => setIsClockVisible(!isClockVisible)}>
-        Clock {isClockVisible ? "ON" : "OFF"}
-      </button>
-      {isClockVisible && <Clock />}
-    </>
-  );
+  return <UselessMachine />;
 }
 
 export default App;
