@@ -1,6 +1,6 @@
 import React from "react";
 
-import MediaPlayer from "./components/MediaPlayer";
+import Timer from "./components/Timer";
 
 const DEMO_SONG_SRC =
   "https://storage.googleapis.com/joshwcomeau/bvrnout-take-it-easy-short.mp3";
@@ -8,7 +8,7 @@ const DEMO_SONG_SRC =
 function App() {
   return (
     <>
-      <MediaPlayer src={DEMO_SONG_SRC} />
+      <Timer />
     </>
   );
 }
