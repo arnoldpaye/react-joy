@@ -1,7 +1,9 @@
 import React from "react";
 
-function useIsOnScreen(elementRef) {
+function useIsOnScreen() {
   const [isOnScreen, setIsOnScreen] = React.useState(false);
+
+  const elementRef = React.useRef();
 
   React.useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -17,7 +19,7 @@ function useIsOnScreen(elementRef) {
     };
   }, [elementRef]);
 
-  return isOnScreen;
+  return [isOnScreen, elementRef];
 }
 
 export default useIsOnScreen;

@@ -3,14 +3,19 @@ import React from "react";
 import useIsOnScreen from "./hooks/use-is-on-screen";
 
 function App() {
-  const elementRef = React.useRef();
-  const isOnScreen = useIsOnScreen(elementRef);
+  const [isRedOnScreen, redElementRef] = useIsOnScreen();
+  const [isPurpleOnScreen, purpleElementRef] = useIsOnScreen();
 
   return (
     <>
-      <header>Red box visible: {isOnScreen ? "YES" : "NO"}</header>
+      <header>
+        Red box visible: {isRedOnScreen ? "YES" : "NO"}
+        <br />
+        Purple box visible: {isPurpleOnScreen ? "YES" : "NO"}
+      </header>
       <div className="wrapper">
-        <div ref={elementRef} className="red box" />
+        <div ref={redElementRef} className="red box" />
+        <div ref={purpleElementRef} className="purple box" />
       </div>
     </>
   );
