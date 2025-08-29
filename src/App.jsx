@@ -1,22 +1,17 @@
 import React from "react";
 
-import useIsOnScreen from "./hooks/use-is-on-screen";
+import Clock from "./components/Clock";
+import useToggle from "./hooks/use-toggle";
 
 function App() {
-  const [isRedOnScreen, redElementRef] = useIsOnScreen();
-  const [isPurpleOnScreen, purpleElementRef] = useIsOnScreen();
+  const [showClock, toggleClock] = useToggle(true);
 
   return (
     <>
-      <header>
-        Red box visible: {isRedOnScreen ? "YES" : "NO"}
-        <br />
-        Purple box visible: {isPurpleOnScreen ? "YES" : "NO"}
-      </header>
-      <div className="wrapper">
-        <div ref={redElementRef} className="red box" />
-        <div ref={purpleElementRef} className="purple box" />
-      </div>
+      {showClock && <Clock />}
+      <button className="clock-toggle" onClick={toggleClock}>
+        Toggle clock
+      </button>
     </>
   );
 }

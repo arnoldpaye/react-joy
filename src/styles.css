@@ -1,31 +1,23 @@
-body {
-  padding: 0px;
+#root {
+  height: 200px;
 }
-header {
-  position: fixed;
-  top: 0;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding: 16px;
-  background: hsl(0deg 0% 90% / 0.8);
-  backdrop-filter: blur(10px);
+body {
+  background: hsl(345deg 80% 85%);
 }
 #root {
-  padding-top: 130vh;
-  padding-bottom: 150vh;
+  display: grid;
+  place-content: center;
 }
-.box {
-  background: tomato;
-  width: min(75%, 300px);
-  aspect-ratio: 1 / 1;
-  margin: 0 auto;
-  border-radius: 4px;
+.clock {
+  font-size: 2rem;
+  font-family: monospace;
+  font-variant-numeric: tabular-nums;
 }
-.box.red {
-  background: tomato;
-}
-.box.purple {
-  background: mediumpurple;
-  margin-top: 32px;
+.clock-toggle {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 32px;
+  margin: auto;
+  width: 150px;
 }
