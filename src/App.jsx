@@ -1,10 +1,14 @@
 import React from "react";
 
-const ENDPOINT = "https://jor-test-api.vercel.app/api/contact";
+const ENDPOINT =
+  "https://jor-test-api.vercel.app/api/contact?simulatedError=true";
 
 function App() {
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
+
+  // idle | loading | success | error
+  const [status, setStatus] = React.useState("idle");
 
   const id = React.useId();
   const emailId = `${id}-email`;
@@ -12,6 +16,8 @@ function App() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
+    setStatus("loading");
 
     const response = await fetch(ENDPOINT, {
       method: "POST",
@@ -22,6 +28,13 @@ function App() {
     });
     const json = await response.json();
     console.log(json);
+
+    if (json.ok) {
+      setStatus("success");
+      setMessage("");
+    } else {
+      setStatus("error");
+    }
   }
 
   return (
@@ -30,6 +43,7 @@ function App() {
         <label htmlFor={emailId}>Email</label>
         <input
           required={true}
+          disabled={status === "loading"}
           id={emailId}
           type="email"
           value={email}
@@ -42,6 +56,7 @@ function App() {
         <label htmlFor={messageId}>Message</label>
         <textarea
           required={true}
+          disabled={status === "loading"}
           id={messageId}
           value={message}
           onChange={(event) => {
@@ -51,8 +66,12 @@ function App() {
       </div>
       <div className="button-row">
         <span className="button-spacer" />
-        <button>Submit</button>
+        <button disabled={status === "loading"}>
+          {status === "loading" ? "Submitting..." : "Submit"}
+        </button>
       </div>
+      {status === "success" && <p>Message sent!</p>}
+      {status === "error" && <p>Something went wrong!</p>}
     </form>
   );
 }
