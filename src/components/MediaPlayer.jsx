@@ -9,16 +9,17 @@ function MediaPlayer({ src }) {
   const audioRef = React.useRef();
 
   React.useEffect(() => {
+    console.log("effect");
     function handleKeyDown(event) {
       if (event.code === "Space") {
-        setIsPlaying((currentValue) => {
-          return !currentValue;
-        });
+        setIsPlaying((currentIsPlaying) => !currentIsPlaying);
       }
     }
 
     window.addEventListener("keydown", handleKeyDown);
+
     return () => {
+      console.log("cleanup");
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
@@ -43,11 +44,6 @@ function MediaPlayer({ src }) {
           <p>Bvrnout ft. Mia Vaile</p>
         </div>
         <button
-          onKeyDown={(event) => {
-            if (event.code === "Space") {
-              event.stopPropagation();
-            }
-          }}
           onClick={() => {
             setIsPlaying(!isPlaying);
           }}
