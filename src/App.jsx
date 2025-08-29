@@ -1,17 +1,16 @@
 import React from "react";
 
-import Clock from "./components/Clock";
+import useMousePosition from "./hooks/use-mouse-position";
 
 function App() {
-  const [showClock, setShowClock] = React.useState(true);
+  const mousePosition = useMousePosition();
 
   return (
-    <>
-      {showClock && <Clock />}
-      <button className="clock-toggle" onClick={() => setShowClock(!showClock)}>
-        Toggle clock
-      </button>
-    </>
+    <div className="wrapper">
+      <p>
+        {mousePosition.x} / {mousePosition.y}
+      </p>
+    </div>
   );
 }
 
