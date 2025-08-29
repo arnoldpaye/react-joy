@@ -1,16 +1,18 @@
 import React from "react";
 
-import useMousePosition from "./hooks/use-mouse-position";
+import useIsOnScreen from "./hooks/use-is-on-screen";
 
 function App() {
-  const mousePosition = useMousePosition();
+  const elementRef = React.useRef();
+  const isOnScreen = useIsOnScreen(elementRef);
 
   return (
-    <div className="wrapper">
-      <p>
-        {mousePosition.x} / {mousePosition.y}
-      </p>
-    </div>
+    <>
+      <header>Red box visible: {isOnScreen ? "YES" : "NO"}</header>
+      <div className="wrapper">
+        <div ref={elementRef} className="red box" />
+      </div>
+    </>
   );
 }
 
