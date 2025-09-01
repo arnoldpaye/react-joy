@@ -1,78 +1,27 @@
 import React from "react";
+import useSWR from "swr";
 
-const ENDPOINT =
-  "https://jor-test-api.vercel.app/api/contact?simulatedError=true";
+const ENDPOINT = "https://jor-test-api.vercel.app/api/get-temperature";
+
+async function fetcher(endpoint) {
+  const response = await fetch(endpoint);
+  const json = await response.json();
+
+  return json;
+}
 
 function App() {
-  const [email, setEmail] = React.useState("");
-  const [message, setMessage] = React.useState("");
+  const { data, error } = useSWR(ENDPOINT, fetcher);
 
-  // idle | loading | success | error
-  const [status, setStatus] = React.useState("idle");
-
-  const id = React.useId();
-  const emailId = `${id}-email`;
-  const messageId = `${id}-message`;
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    setStatus("loading");
-
-    const response = await fetch(ENDPOINT, {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        message,
-      }),
-    });
-    const json = await response.json();
-    console.log(json);
-
-    if (json.ok) {
-      setStatus("success");
-      setMessage("");
-    } else {
-      setStatus("error");
-    }
-  }
+  console.log(data, error);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="row">
-        <label htmlFor={emailId}>Email</label>
-        <input
-          required={true}
-          disabled={status === "loading"}
-          id={emailId}
-          type="email"
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
-      </div>
-      <div className="row">
-        <label htmlFor={messageId}>Message</label>
-        <textarea
-          required={true}
-          disabled={status === "loading"}
-          id={messageId}
-          value={message}
-          onChange={(event) => {
-            setMessage(event.target.value);
-          }}
-        />
-      </div>
-      <div className="button-row">
-        <span className="button-spacer" />
-        <button disabled={status === "loading"}>
-          {status === "loading" ? "Submitting..." : "Submit"}
-        </button>
-      </div>
-      {status === "success" && <p>Message sent!</p>}
-      {status === "error" && <p>Something went wrong!</p>}
-    </form>
+    <p>
+      Current temperature:
+      {typeof data?.temperature === "number" && (
+        <span className="temperature">{data.temperature}°C</span>
+      )}
+    </p>
   );
 }
 
