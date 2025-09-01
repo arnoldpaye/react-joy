@@ -1,18 +1,17 @@
 import React from "react";
 
-function TextInput({ id, label, type }) {
-  const generatedId = React.useId();
-  const appliedId = id || generatedId;
-
-  /* if (typeof appliedId === 'undefined') {
-    appliedId = React.useId();
-  } */
+// This component uses a technique known as
+// “prop delegation”. We'll learn more about it
+// in Module 4!
+function TextInput({ id, label, ...delegated }) {
+  let generatedId = React.useId();
+  let appliedId = id || generatedId;
 
   return (
-    <div className="text-input">
+    <>
       <label htmlFor={appliedId}>{label}</label>
-      <input id={appliedId} type={type} />
-    </div>
+      <input id={appliedId} {...delegated} />
+    </>
   );
 }
 
