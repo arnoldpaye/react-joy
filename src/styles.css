@@ -1,23 +1,37 @@
 body {
-  background: hsl(260deg 80% 40%);
-  padding: 32px;
-  color: white;
+  padding: 16px;
 }
-#root {
-  height: 100%;
-  display: grid;
-  place-content: center;
+.grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
-.user-card {
-  background: white;
-  color: black;
-  border-radius: 16px;
-  padding: 24px 48px;
-  border: 2px dashed hsl(260deg 100% 80%);
-  outline: 2px solid white;
+.row {
+  display: flex;
+  gap: 2px;
+}
+.cell {
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  border: 1px solid hsl(0deg 0% 0% / 0.5);
+}
+p {
   text-align: center;
 }
-.user-card .name {
-  font-size: 1.25rem;
-  font-weight: 500;
+form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+form input {
+  width: 100%;
+  min-width: 0px;
+}
+form p {
+  min-width: 80px;
+}
+label {
+  display: block;
 }
