@@ -1,49 +1,19 @@
 import React from "react";
 
-import ShoppingCart from "./components/ShoppingCart";
+import { LoggedInBanner } from "./components/Banner";
+
+const EXAMPLE_USER = {
+  name: "Sayen",
+  registrationStatus: "verified",
+};
 
 function App() {
-  const [items, setItems] = React.useState([
-    {
-      id: "hk123",
-      imageSrc:
-        "https://sandpack-bundler.vercel.app/img/shopping-cart-coffee-machine.jpg",
-      imageAlt: "A pink drip coffee machine with the “Hello Kitty” logo",
-      title: "“Hello Kitty” Coffee Machine",
-      price: "89.99",
-      inStock: true,
-    },
-    {
-      id: "co999",
-      imageSrc:
-        "https://sandpack-bundler.vercel.app/img/shopping-cart-can-opener.jpg",
-      imageAlt: "A black can opener",
-      title: "Safety Can Opener",
-      price: "19.95",
-      inStock: false,
-    },
-    {
-      id: "cnl333",
-      imageSrc:
-        "https://sandpack-bundler.vercel.app/img/shopping-cart-night-light.png",
-      imageAlt:
-        "A kid-friendly nightlight sculpted to look like a dog astronaut",
-      title: "Astro-pup Night Light",
-      price: "130.00",
-      inStock: true,
-    },
-    {
-      id: "scb777",
-      imageSrc:
-        "https://sandpack-bundler.vercel.app/img/shopping-cart-backpack.jpg",
-      imageAlt: "A pink backpack with a unicorn illustration",
-      title: "Magical Unicorn Backpack",
-      price: "74.98",
-      inStock: true,
-    },
-  ]);
-
-  return <ShoppingCart items={items} />;
+  return (
+    <LoggedInBanner type={"success"} user={EXAMPLE_USER}>
+      Successfully logged in! Welcome aboard, {""}
+      {EXAMPLE_USER.name}!
+    </LoggedInBanner>
+  );
 }
 
 export default App;
