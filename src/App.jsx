@@ -1,63 +1,49 @@
 import React from "react";
 
-import Grid from "./components/Grid";
+import ShoppingCart from "./components/ShoppingCart";
 
 function App() {
-  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+  const [items, setItems] = React.useState([
+    {
+      id: "hk123",
+      imageSrc:
+        "https://sandpack-bundler.vercel.app/img/shopping-cart-coffee-machine.jpg",
+      imageAlt: "A pink drip coffee machine with the “Hello Kitty” logo",
+      title: "“Hello Kitty” Coffee Machine",
+      price: "89.99",
+      inStock: true,
+    },
+    {
+      id: "co999",
+      imageSrc:
+        "https://sandpack-bundler.vercel.app/img/shopping-cart-can-opener.jpg",
+      imageAlt: "A black can opener",
+      title: "Safety Can Opener",
+      price: "19.95",
+      inStock: false,
+    },
+    {
+      id: "cnl333",
+      imageSrc:
+        "https://sandpack-bundler.vercel.app/img/shopping-cart-night-light.png",
+      imageAlt:
+        "A kid-friendly nightlight sculpted to look like a dog astronaut",
+      title: "Astro-pup Night Light",
+      price: "130.00",
+      inStock: true,
+    },
+    {
+      id: "scb777",
+      imageSrc:
+        "https://sandpack-bundler.vercel.app/img/shopping-cart-backpack.jpg",
+      imageAlt: "A pink backpack with a unicorn illustration",
+      title: "Magical Unicorn Backpack",
+      price: "74.98",
+      inStock: true,
+    },
+  ]);
 
-  const [numRows, setNumRows] = React.useState(12);
-  const [numCols, setNumCols] = React.useState(12);
-
-  const id = React.useId();
-
-  React.useEffect(() => {
-    function handleMouseMove(event) {
-      setMousePosition({
-        x: event.clientX,
-        y: event.clientY,
-      });
-    }
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  return (
-    <>
-      <form>
-        <div>
-          <label htmlFor={`${id}-rows`}>Rows:</label>
-          <input
-            id={`${id}-rows`}
-            type="range"
-            value={numRows}
-            onChange={(event) => setNumRows(event.target.value)}
-            min={5}
-            max={40}
-          />
-        </div>
-        <p>
-          {mousePosition.x} / {mousePosition.y}
-        </p>
-        <div>
-          <label htmlFor={`${id}-cols`}>Columns:</label>
-          <input
-            id={`${id}-cols`}
-            type="range"
-            value={numCols}
-            onChange={(event) => setNumCols(event.target.value)}
-            min={5}
-            max={40}
-          />
-        </div>
-      </form>
-
-      <Grid numRows={numRows} numCols={numCols} />
-    </>
-  );
+  return <ShoppingCart items={items} />;
 }
 
 export default App;
