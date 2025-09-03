@@ -2,15 +2,17 @@ import React from "react";
 
 import styles from "./Slider.module.css";
 
-function Slider({ label, ...delegated }) {
+function Slider({ label, className = "", ...delegated }) {
   const id = React.useId();
+
+  const sliderClassName = `${styles.slider} ${className}`;
 
   return (
     <div className={styles.wrapper}>
       <label htmlFor={id} className={styles.label}>
         {label}
       </label>
-      <input type="range" id={id} className={styles.slider} {...delegated} />
+      <input {...delegated} type="range" id={id} className={styles.slider} />
     </div>
   );
 }

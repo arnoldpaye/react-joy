@@ -1,27 +1,11 @@
 import React from "react";
 
-import useToggle from "./hooks/use-toggle";
-import Toggle from "./components/Toggle";
+import VolumeSlider from "./components/VolumeSlider";
 
 function App() {
-  const [enableWifi, toggleEnableWifi] = useToggle(true);
-  const [lowPowerMode, toggleLowPowerMode] = useToggle(false);
+  const [volume, setVolume] = React.useState(50);
 
-  return (
-    <main>
-      <Toggle
-        label="Enable Wi-Fi"
-        checked={enableWifi}
-        onClick={toggleEnableWifi}
-      />
-      <Toggle
-        className="green-toggle"
-        label="Low Power Mode"
-        checked={lowPowerMode}
-        onClick={toggleLowPowerMode}
-      />
-    </main>
-  );
+  return <VolumeSlider volume={volume} setVolume={setVolume} />;
 }
 
 export default App;
