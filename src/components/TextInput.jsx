@@ -1,17 +1,14 @@
 import React from "react";
 
-// This component uses a technique known as
-// “prop delegation”. We'll learn more about it
-// in Module 4!
 function TextInput({ id, label, ...delegated }) {
   let generatedId = React.useId();
   let appliedId = id || generatedId;
 
   return (
-    <>
+    <div className="text-input">
       <label htmlFor={appliedId}>{label}</label>
       <input id={appliedId} {...delegated} />
-    </>
+    </div>
   );
 }
 

@@ -1,23 +1,38 @@
 import React from "react";
 
-function LoginForm({ handleLogin }) {
-  const id = React.useId();
+import TextInput from "./TextInput";
+
+function LoginForm() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  function handleLogin() {
+    alert(`Logged in with ${email}`);
+  }
+
   return (
     <form onSubmit={handleLogin}>
-      <div className="row">
-        <label htmlFor={`${id}-email`}>Email</label>
-        <input
-          type="email"
-          id={`${id}-email`}
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
-      </div>
+      <TextInput
+        required={true}
+        data-test-id="login-email-field"
+        label="Email"
+        type="email"
+        value={email}
+        onChange={(event) => {
+          setEmail(event.target.value);
+        }}
+      />
+      <TextInput
+        required={true}
+        minLength={12}
+        label="Password"
+        type="password"
+        value={password}
+        onChange={(event) => {
+          setPassword(event.target.value);
+        }}
+      />
+      <button>Submit</button>
     </form>
   );
 }
