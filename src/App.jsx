@@ -1,21 +1,24 @@
 import React from "react";
 
-import Slider from "./components/Slider";
+import useToggle from "./hooks/use-toggle";
+import Toggle from "./components/Toggle";
 
 function App() {
-  const [volume, setVolume] = React.useState(50);
+  const [enableWifi, toggleEnableWifi] = useToggle(true);
+  const [lowPowerMode, toggleLowPowerMode] = useToggle(false);
 
   return (
     <main>
-      <Slider
-        label="Volume"
-        min={0}
-        max={100}
-        step={10}
-        value={volume}
-        onChange={(event) => {
-          setVolume(event.target.value);
-        }}
+      <Toggle
+        label="Enable Wi-Fi"
+        checked={enableWifi}
+        onClick={toggleEnableWifi}
+      />
+      <Toggle
+        className="green-toggle"
+        label="Low Power Mode"
+        checked={lowPowerMode}
+        onClick={toggleLowPowerMode}
       />
     </main>
   );
