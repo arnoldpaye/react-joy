@@ -5,8 +5,6 @@ import styles from "./Slider.module.css";
 function Slider({ label, className = "", ...delegated }, ref) {
   const id = React.useId();
 
-  const sliderClassName = `${styles.slider} ${className}`;
-
   return (
     <div className={styles.wrapper}>
       <label htmlFor={id} className={styles.label}>
@@ -17,7 +15,7 @@ function Slider({ label, className = "", ...delegated }, ref) {
         {...delegated}
         type="range"
         id={id}
-        className={styles.slider}
+        className={`${styles.slider} ${className}`}
       />
     </div>
   );

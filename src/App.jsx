@@ -1,19 +1,15 @@
 import React from "react";
 
-import Button from "./components/Button";
+import SquareSlider from "./components/SquareSlider";
 
 function App() {
-  const buttonRef = React.useRef();
+  const sliderRef = React.useRef();
 
-  function logRef() {
-    console.log("Captured ref: ", buttonRef.current);
-  }
+  React.useState(() => {
+    console.log(sliderRef.current);
+  }, []);
 
-  return (
-    <Button ref={buttonRef} onMouseEnter={logRef} onFocus={logRef}>
-      Hover or Focus Me
-    </Button>
-  );
+  return <SquareSlider ref={sliderRef} label={"Intensity"} min={0} max={100} />;
 }
 
 export default App;
