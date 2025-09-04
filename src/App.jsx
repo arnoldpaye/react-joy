@@ -1,11 +1,34 @@
 import React from "react";
 
-import VolumeSlider from "./components/VolumeSlider";
-
 function App() {
-  const [volume, setVolume] = React.useState(50);
+  const [searchTerm, setSearchTerm] = React.useState("");
 
-  return <VolumeSlider volume={volume} setVolume={setVolume} />;
+  const inputRef = React.useRef();
+
+  React.useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  return (
+    <>
+      <header>
+        <img className="logo" alt="Foobar" src="" />
+      </header>
+      <main>
+        <form>
+          <input
+            ref={(r) => {
+              inputRef.current = r;
+            }}
+            value={searchTerm}
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          />
+        </form>
+      </main>
+    </>
+  );
 }
 
 export default App;
