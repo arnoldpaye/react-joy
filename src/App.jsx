@@ -15,7 +15,7 @@ function App() {
     <main>
       <span>{volume}</span>
       <Slider
-        forwardedRef={sliderRef}
+        ref={sliderRef}
         label={"Volume"}
         min={0}
         max={100}
