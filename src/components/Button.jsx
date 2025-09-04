@@ -1,14 +1,13 @@
 import React from "react";
 
-function Button({ children }) {
-  const [hi, setHi] = React.useState(5);
+import styles from "./Button.module.css";
 
-  function handleClick(event) {
-    console.log("Clicked");
-    setHi(hi + 1);
-  }
-
-  return <button onClick={handleClick}>{children}</button>;
+function Button({ children, ...delegated }, ref) {
+  return (
+    <button ref={ref} {...delegated} className={styles.btn}>
+      {children}
+    </button>
+  );
 }
 
-export default Button;
+export default React.forwardRef(Button);

@@ -1,30 +1,18 @@
 import React from "react";
 
-import Slider from "./components/Slider";
+import Button from "./components/Button";
 
 function App() {
-  const [volume, setVolume] = React.useState(50);
+  const buttonRef = React.useRef();
 
-  const sliderRef = React.useRef();
-
-  React.useEffect(() => {
-    sliderRef.current.focus();
-  }, []);
+  function logRef() {
+    console.log("Captured ref: ", buttonRef.current);
+  }
 
   return (
-    <main>
-      <span>{volume}</span>
-      <Slider
-        ref={sliderRef}
-        label={"Volume"}
-        min={0}
-        max={100}
-        value={volume}
-        onChange={(event) => {
-          setVolume(event.target.value);
-        }}
-      />
-    </main>
+    <Button ref={buttonRef} onMouseEnter={logRef} onFocus={logRef}>
+      Hover or Focus Me
+    </Button>
   );
 }
 
