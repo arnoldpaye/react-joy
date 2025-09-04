@@ -1,33 +1,30 @@
 import React from "react";
 
-function App() {
-  const [searchTerm, setSearchTerm] = React.useState("");
+import Slider from "./components/Slider";
 
-  const inputRef = React.useRef();
+function App() {
+  const [volume, setVolume] = React.useState(50);
+
+  const sliderRef = React.useRef();
 
   React.useEffect(() => {
-    inputRef.current.focus();
+    sliderRef.current.focus();
   }, []);
 
   return (
-    <>
-      <header>
-        <img className="logo" alt="Foobar" src="" />
-      </header>
-      <main>
-        <form>
-          <input
-            ref={(r) => {
-              inputRef.current = r;
-            }}
-            value={searchTerm}
-            onChange={(event) => {
-              setSearchTerm(event.target.value);
-            }}
-          />
-        </form>
-      </main>
-    </>
+    <main>
+      <span>{volume}</span>
+      <Slider
+        forwardedRef={sliderRef}
+        label={"Volume"}
+        min={0}
+        max={100}
+        value={volume}
+        onChange={(event) => {
+          setVolume(event.target.value);
+        }}
+      />
+    </main>
   );
 }
 

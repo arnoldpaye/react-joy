@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Slider.module.css";
 
-function Slider({ label, className = "", ...delegated }) {
+function Slider({ label, forwardedRef, className = "", ...delegated }) {
   const id = React.useId();
 
   const sliderClassName = `${styles.slider} ${className}`;
@@ -12,7 +12,13 @@ function Slider({ label, className = "", ...delegated }) {
       <label htmlFor={id} className={styles.label}>
         {label}
       </label>
-      <input {...delegated} type="range" id={id} className={styles.slider} />
+      <input
+        ref={forwardedRef}
+        {...delegated}
+        type="range"
+        id={id}
+        className={styles.slider}
+      />
     </div>
   );
 }
