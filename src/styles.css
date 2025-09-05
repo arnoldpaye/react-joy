@@ -1,11 +1,17 @@
-/* Basic theme styles */
 body {
-  padding: 16px;
-  font-family: "Wotfard", sans-serif;
+  padding: 0px;
+}
+html,
+body,
+#root {
+  height: 100%;
 }
 
 main {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 32px;
+  min-height: 100%;
 }

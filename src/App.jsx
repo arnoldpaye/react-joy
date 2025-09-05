@@ -1,17 +1,21 @@
 import React from "react";
 
-import LinkButton from "./components/LinkButton";
+import List from "./components/List";
 
 function App() {
-  function exportData() {
-    console.log("exportData function invoked");
-  }
-
   return (
     <main>
-      <LinkButton href={"/add-transaction"}>Add Transaction</LinkButton>
-      <LinkButton href={"/report"}>View Report</LinkButton>
-      <LinkButton onClick={exportData}>Export All Data</LinkButton>
+      <List>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </List>
+
+      <List as={"button"}>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </List>
     </main>
   );
 }
