@@ -5,7 +5,7 @@ body {
 }
 
 main {
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 32px;
 }

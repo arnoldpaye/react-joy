@@ -1,15 +1,19 @@
 import React from "react";
 
-import SquareSlider from "./components/SquareSlider";
+import LinkButton from "./components/LinkButton";
 
 function App() {
-  const sliderRef = React.useRef();
+  function exportData() {
+    console.log("exportData function invoked");
+  }
 
-  React.useState(() => {
-    console.log(sliderRef.current);
-  }, []);
-
-  return <SquareSlider ref={sliderRef} label={"Intensity"} min={0} max={100} />;
+  return (
+    <main>
+      <LinkButton href={"/add-transaction"}>Add Transaction</LinkButton>
+      <LinkButton href={"/report"}>View Report</LinkButton>
+      <LinkButton onClick={exportData}>Export All Data</LinkButton>
+    </main>
+  );
 }
 
 export default App;
