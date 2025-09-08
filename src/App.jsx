@@ -1,23 +1,25 @@
 import React from "react";
 
+import AccountDropdown from "./components/AccountDropdown";
+import CourseIndexLayout from "./components/CourseIndexLayout";
+
+export const UserContext = React.createContext();
+
 function App() {
+  const user = useUser();
+
   return (
-    <CaptionedImage
-      alt="A meerkat looking curiously at the camera"
-      src="https://sandpack-bundler.vercel.app/img/meerkat.jpg"
-      caption="Photo by Manuel Capellari, shot in August 2019 and published on Unsplash."
-    />
+    <UserContext.Provider value={user}>
+      <AccountDropdown />
+      <CourseIndexLayout />
+    </UserContext.Provider>
   );
 }
 
-function CaptionedImage({ alt, src, caption }) {
-  return (
-    <figure>
-      <img alt={alt} src={src} />
-      <div className={"divider"} />
-      <figcaption>{caption}</figcaption>
-    </figure>
-  );
+function useUser() {
+  return {
+    email: "user@email.com",
+  };
 }
 
 export default App;
