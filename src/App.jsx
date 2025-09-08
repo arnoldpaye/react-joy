@@ -1,59 +1,58 @@
 import React from "react";
-import VideoPlayer from "./components/VideoPlayer";
 
+import { COLORS } from "./constants";
+import Homepage from "./Components/Homepage";
+import UserProvider from "./UserProvider";
+import ThemeProvider from "./ThemeProvider";
+import PlaybackRateProvider from "./PlaybackRateProvider";
+
+export const ThemeContext = React.createContext();
 export const PlaybackRateContext = React.createContext();
 
 function App() {
-  const [playbackRate, setPlaybackRate] = React.useState("1");
+  const [theme, setTheme] = React.useState(() => {
+    return window.localStorage.getItem("color-theme") || "light";
+  });
+
+  const [playbackRate, setPlaybackRate] = React.useState(1);
+
+  React.useEffect(() => {
+    window.localStorage.setItem("color-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = React.useCallback(() => {
+    setTheme((currentTheme) => {
+      return currentTheme === "light" ? "dark" : "light";
+    });
+  }, []);
+
+  const colors = COLORS[theme];
+
+  const resetPlaybackRate = React.useCallback(() => {
+    setPlaybackRate(1);
+  }, []);
 
   return (
-    <PlaybackRateContext.Provider value={{ playbackRate, setPlaybackRate }}>
-      <main>
-        <h1>Video Archives</h1>
-        {DATA.map(({ id, video, createdBy, license }) => (
-          <article key={id}>
-            <VideoPlayer src={video.src} caption={video.caption} />
-            <dl>
-              <dt>Created by</dt>
-              <dd>{createdBy}</dd>
-              <dt>Licensed under</dt>
-              <dd>{license}</dd>
-            </dl>
-          </article>
-        ))}
-      </main>
-    </PlaybackRateContext.Provider>
+    <UserProvider>
+      <ThemeContext.Provider
+        value={{
+          theme,
+          toggleTheme,
+          colors,
+        }}
+      >
+        <PlaybackRateContext.Provider
+          value={{
+            playbackRate,
+            setPlaybackRate,
+            resetPlaybackRate,
+          }}
+        >
+          <Homepage />
+        </PlaybackRateContext.Provider>
+      </ThemeContext.Provider>
+    </UserProvider>
   );
 }
-
-const DATA = [
-  {
-    id: "snowstorm",
-    video: {
-      src: "https://sandpack-bundler.vercel.app/videos/snowstorm.mp4",
-      caption: "A peaceful snowstorm in a residential area",
-    },
-    createdBy: "Karolina Grabowska",
-    license: "Creative Commons Zero (CC0)",
-  },
-  {
-    id: "flowers",
-    video: {
-      src: "https://sandpack-bundler.vercel.app/videos/flowers.mp4",
-      caption: "Macro video of a flower blowing in the wind",
-    },
-    createdBy: "Imam Hossain",
-    license: "Creative Commons Zero (CC0)",
-  },
-  {
-    id: "plane",
-    video: {
-      src: "https://sandpack-bundler.vercel.app/videos/plane.mp4",
-      caption: "Plane flying over the clouds",
-    },
-    createdBy: "Ahmet Akpolat",
-    license: "Creative Commons Zero (CC0)",
-  },
-];
 
 export default App;
