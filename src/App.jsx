@@ -1,57 +1,20 @@
 import React from "react";
 
-import { COLORS } from "./constants";
-import Homepage from "./Components/Homepage";
-import UserProvider from "./UserProvider";
-import ThemeProvider from "./ThemeProvider";
-import PlaybackRateProvider from "./PlaybackRateProvider";
-
-export const ThemeContext = React.createContext();
-export const PlaybackRateContext = React.createContext();
+import FavouriteColorProvider from "./FavouriteColorProvider";
+import Counter from "./components/Counter";
+import ColorPicker from "./components/ColorPicker";
 
 function App() {
-  const [theme, setTheme] = React.useState(() => {
-    return window.localStorage.getItem("color-theme") || "light";
-  });
-
-  const [playbackRate, setPlaybackRate] = React.useState(1);
-
-  React.useEffect(() => {
-    window.localStorage.setItem("color-theme", theme);
-  }, [theme]);
-
-  const toggleTheme = React.useCallback(() => {
-    setTheme((currentTheme) => {
-      return currentTheme === "light" ? "dark" : "light";
-    });
-  }, []);
-
-  const colors = COLORS[theme];
-
-  const resetPlaybackRate = React.useCallback(() => {
-    setPlaybackRate(1);
-  }, []);
+  const [count, setCount] = React.useState(0);
 
   return (
-    <UserProvider>
-      <ThemeContext.Provider
-        value={{
-          theme,
-          toggleTheme,
-          colors,
-        }}
-      >
-        <PlaybackRateContext.Provider
-          value={{
-            playbackRate,
-            setPlaybackRate,
-            resetPlaybackRate,
-          }}
-        >
-          <Homepage />
-        </PlaybackRateContext.Provider>
-      </ThemeContext.Provider>
-    </UserProvider>
+    <>
+      <FavouriteColorProvider>
+        <Counter count={count} setCount={setCount} />
+        <ColorPicker />
+      </FavouriteColorProvider>
+      <p>Current count: {count}</p>
+    </>
   );
 }
 
